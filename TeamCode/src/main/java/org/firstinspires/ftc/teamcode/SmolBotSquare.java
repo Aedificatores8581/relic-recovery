@@ -14,7 +14,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  *
  * @author Pootis Man
  */
-@TeleOp(name = "RevBot: Tele-Op", group = "bepis")
+@TeleOp(name = "RevBot: Shquare", group = "bepis")
 public class SmolBotSquare extends SmolBotTemplate
 {
     State state;
@@ -44,8 +44,8 @@ public class SmolBotSquare extends SmolBotTemplate
 
     @Override
     public void start() {
-        setLeftPow(0.5);
-        setRightPow(0.5);
+        setLeftPow(0.2);
+        setRightPow(0.2);
         state = State.MOVING;
     }
 
@@ -63,21 +63,21 @@ public class SmolBotSquare extends SmolBotTemplate
     //
     // The system calls this member repeatedly while the OpMode is running.
     //--------
-    @Override public void loop () {
+    @Override
+    public void loop () {
         switch (state) {
             case MOVING:
-                if (checkEncoder(500)) {
-                    setLeftPow(-0.5);
-                    setRightPow(0.5);
+                if (checkEncoder(800)) {
+                    setLeftPow(-0.2);
+                    setRightPow(0.2);
                     state = State.TURNING;
                 }
             case TURNING:
                 if (checkEncoder(200)) {
-                    setLeftPow(0.5);
-                    setRightPow(0.5);
-                    state = State.TURNING;
+                    setLeftPow(0.2);
+                    setRightPow(0.2);
+                    state = State.MOVING;
                 }
         }
     }
-
 } // PootisBotManual

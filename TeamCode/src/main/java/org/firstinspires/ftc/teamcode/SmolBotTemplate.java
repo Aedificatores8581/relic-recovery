@@ -7,19 +7,19 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  * Created by The Saminator on 06-29-2017.
  */
 public abstract class SmolBotTemplate extends OpMode {
-    DcMotor leftFore, rightFore, leftRear, rightRear;
+    DcMotor left, right, arm, hand;
 
     @Override
     public void init() {
-        leftFore = hardwareMap.dcMotor.get("lfm");
-        leftRear = hardwareMap.dcMotor.get("lbm");
-        rightFore = hardwareMap.dcMotor.get("rfm");
-        rightRear = hardwareMap.dcMotor.get("rbm");
+        left = hardwareMap.dcMotor.get("lm");
+        right = hardwareMap.dcMotor.get("rm");
+        arm = hardwareMap.dcMotor.get("am");
+        hand = hardwareMap.dcMotor.get("hm");
 
-        leftFore.setDirection(Constants.LEFT_FORE_DIR);
-        leftRear.setDirection(Constants.LEFT_REAR_DIR);
-        rightFore.setDirection(Constants.RIGHT_FORE_DIR);
-        rightRear.setDirection(Constants.RIGHT_REAR_DIR);
+        left.setDirection(Constants.LEFT_DIR);
+        right.setDirection(Constants.RIGHT_DIR);
+        arm.setDirection(Constants.ARM_DIR);
+        hand.setDirection(Constants.HAND_DIR);
     }
 
     @Override
@@ -29,22 +29,26 @@ public abstract class SmolBotTemplate extends OpMode {
     }
 
     protected void setLeftPow(double pow) {
-        leftFore.setPower(pow * Constants.LEFT_FORE_SPEED);
-        leftRear.setPower(pow * Constants.LEFT_REAR_SPEED);
+        left.setPower(pow * Constants.LEFT_SPEED);
     }
 
     protected void setRightPow(double pow) {
-        rightFore.setPower(pow * Constants.RIGHT_FORE_SPEED);
-        rightRear.setPower(pow * Constants.RIGHT_REAR_SPEED);
+        right.setPower(pow * Constants.RIGHT_SPEED);
+    }
+
+    protected void setArmPow(double pow) {
+        arm.setPower(pow * Constants.ARM_SPEED);
+    }
+
+    protected void setHandPow(double pow) {
+        hand.setPower(pow * Constants.HAND_SPEED);
     }
 
     protected boolean checkEncoder(int ticks) {
         int distance = Math.abs(ticks);
-        int leftForeDist = Math.abs(leftFore.getCurrentPosition());
-        int rightForeDist = Math.abs(rightFore.getCurrentPosition());
-        int leftRearDist = Math.abs(leftRear.getCurrentPosition());
-        int rightRearDist = Math.abs(rightRear.getCurrentPosition());
+        int leftDist = Math.abs(left.getCurrentPosition());
+        int rightDist = Math.abs(right.getCurrentPosition());
 
-        return (distance <= leftForeDist) || (distance <= rightForeDist) || (distance <= leftRearDist) || (distance <= rightRearDist);
+        return (distance <= leftDist) || (distance <= rightDist);
     }
 }

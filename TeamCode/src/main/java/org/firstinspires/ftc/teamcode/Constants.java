@@ -40,13 +40,13 @@ public class Constants {
     ////////////////////
 
 
-    public static final DcMotor.Direction LEFT_FORE_DIR = DcMotor.Direction.FORWARD;
-    public static final DcMotor.Direction LEFT_REAR_DIR = DcMotor.Direction.FORWARD;
-    public static final DcMotor.Direction RIGHT_FORE_DIR = DcMotor.Direction.REVERSE;
-    public static final DcMotor.Direction RIGHT_REAR_DIR = DcMotor.Direction.REVERSE;
+    public static final DcMotor.Direction LEFT_DIR = DcMotor.Direction.REVERSE;
+    public static final DcMotor.Direction RIGHT_DIR = DcMotor.Direction.FORWARD;
+    public static final DcMotor.Direction ARM_DIR = DcMotor.Direction.REVERSE;
+    public static final DcMotor.Direction HAND_DIR = DcMotor.Direction.FORWARD;
 
-    public static final double LEFT_FORE_SPEED = 1.0; // Always positive and between 0 and 1.
-    public static final double LEFT_REAR_SPEED = 1.0; // Always positive and between 0 and 1.
-    public static final double RIGHT_FORE_SPEED = 1.0; // Always positive and between 0 and 1.
-    public static final double RIGHT_REAR_SPEED = 1.0; // Always positive and between 0 and 1.
+    public static final double LEFT_SPEED = 0.375; // Always positive and between 0 and 1.
+    public static final double RIGHT_SPEED = 0.375; // Always positive and between 0 and 1.
+    public static final double ARM_SPEED = 0.25; // Always positive and between 0 and 1.
+    public static final double HAND_SPEED = 0.25; // Always positive and between 0 and 1.
 }

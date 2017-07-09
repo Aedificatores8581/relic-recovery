@@ -68,11 +68,26 @@ public class SmolBotManual extends SmolBotTemplate
     // The system calls this member repeatedly while the OpMode is running.
     //--------
     @Override public void loop () {
-        double left = gamepad1.left_stick_y;
-        double right = gamepad1.right_stick_y;
+        // This is backwards for some cryptic reason.
+        double right = gamepad1.left_stick_y;
+        double left = gamepad1.right_stick_y;
 
         setLeftPow(left);
         setRightPow(right);
+
+        if (gamepad1.y)
+            setArmPow(1);
+        else if (gamepad1.a)
+            setArmPow(-1);
+        else
+            setArmPow(0);
+
+        if (gamepad1.x)
+            setHandPow(1);
+        else if (gamepad1.b)
+            setHandPow(-1);
+        else
+            setHandPow(0);
 
         telemetry.addData("Left Pow", left);
         telemetry.addData("Right Pow", right);
