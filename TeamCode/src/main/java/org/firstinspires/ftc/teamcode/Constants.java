@@ -47,6 +47,7 @@ public class Constants {
 
     public static final double LEFT_SPEED = 0.375; // Always positive and between 0 and 1.
     public static final double RIGHT_SPEED = 0.375; // Always positive and between 0 and 1.
-    public static final double ARM_SPEED = 0.25; // Always positive and between 0 and 1.
-    public static final double HAND_SPEED = 0.25; // Always positive and between 0 and 1.
+    public static final double ARM_SPEED = 0.375; // Always positive and between 0 and 1.
+    public static final double HAND_SPEED = 0.375; // Always positive and between 0 and 1.
+    public static final double SERVO_SPEED = 0.125; // Always positive and between 0 and 1.
 }

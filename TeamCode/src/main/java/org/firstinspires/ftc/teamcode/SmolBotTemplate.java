@@ -2,12 +2,14 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 
 /**
  * Created by The Saminator on 06-29-2017.
  */
 public abstract class SmolBotTemplate extends OpMode {
     DcMotor left, right, arm, hand;
+    Servo srv;
 
     @Override
     public void init() {
@@ -20,6 +22,10 @@ public abstract class SmolBotTemplate extends OpMode {
         right.setDirection(Constants.RIGHT_DIR);
         arm.setDirection(Constants.ARM_DIR);
         hand.setDirection(Constants.HAND_DIR);
+
+        srv = hardwareMap.servo.get("srv");
+
+        srv.setPosition(0.0);
     }
 
     @Override

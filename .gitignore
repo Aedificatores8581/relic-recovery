@@ -28,3 +28,4 @@ build/
 
 # Old code
 **/year2016_2017/*.java
+doc/apk/
