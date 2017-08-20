@@ -4,6 +4,7 @@ import android.graphics.Path;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
 
 /**
  * Created by The Saminator on 11-12-2016.
@@ -44,9 +45,12 @@ public class Constants {
     public static final DcMotor.Direction RIGHT_DIR = DcMotor.Direction.FORWARD;
     public static final DcMotor.Direction ARM_DIR = DcMotor.Direction.REVERSE;
     public static final DcMotor.Direction HAND_DIR = DcMotor.Direction.FORWARD;
+    public static final Servo.Direction GRAB = Servo.Direction.FORWARD;
 
     public static final double LEFT_SPEED = 0.375; // Always positive and between 0 and 1.
     public static final double RIGHT_SPEED = 0.375; // Always positive and between 0 and 1.
-    public static final double ARM_SPEED = 0.25; // Always positive and between 0 and 1.
-    public static final double HAND_SPEED = 0.25; // Always positive and between 0 and 1.
+    public static final double ARM_SPEED = 0.50; // Always positive and between 0 and 1.
+    public static final double HAND_SPEED = 0.50; // Always positive and between 0 and 1.
+    public static final double GRAB_SPEED = 0.25; // Always positive and between 0 and 1.
+
 }
