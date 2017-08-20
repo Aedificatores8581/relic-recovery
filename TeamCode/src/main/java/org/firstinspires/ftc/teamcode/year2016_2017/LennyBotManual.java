@@ -224,21 +224,16 @@ public class LennyBotManual extends OpMode
             s1.setPosition(Math.max(Constants.SERVO_MIN_2016, Math.min(s1.getPosition() - (gamepad2.left_stick_y * 0.01), Constants.SERVO_MAX_2016)));
         }
 
-        if (gamepad2.dpad_up && !prev2.dpad_up) {
+        if (gamepad1.dpad_up && !prev1.dpad_up) {
             //if (s2.getPosition() <= 0.95)
             s2.setPosition(s2.getPosition() + 0.05);
         }
-        if (gamepad2.dpad_down && !prev2.dpad_down) {
+        if (gamepad1.dpad_down && !prev1.dpad_down) {
             s2.setPosition(s2.getPosition() - 0.05);
         }
 
         /*timer.schedule(new SpeedTimerTask(left.getCurrentPosition(), 250, leftPositionProv, leftSpeedRecv, timer), 250);
         timer.schedule(new SpeedTimerTask(right.getCurrentPosition(), 250, rightPositionProv, rightSpeedRecv, timer), 250);*/
-
-        if (gamepad1.right_trigger >= 0.5 && !(prev1.right_trigger >= 0.5))
-            motorSpeed = 1.0;
-        if (gamepad1.left_trigger >= 0.5 && !(prev1.left_trigger >= 0.5))
-            motorSpeed = 0.5;
 
         if (gamepad1.right_bumper) {
             sm.setDirection(DcMotor.Direction.FORWARD);
@@ -248,11 +243,11 @@ public class LennyBotManual extends OpMode
             sm.setDirection(DcMotor.Direction.REVERSE);
             sm.setPower(1.0);
         }
-        else if (gamepad2.right_trigger > 0.5f) {
+        else if (gamepad1.right_trigger > 0.5f) {
             sm.setDirection(DcMotor.Direction.FORWARD);
             sm.setPower(1.0);
         }
-        else if (gamepad2.left_trigger > 0.5f) {
+        else if (gamepad1.left_trigger > 0.5f) {
             sm.setDirection(DcMotor.Direction.REVERSE);
             sm.setPower(1.0);
         }
@@ -261,7 +256,7 @@ public class LennyBotManual extends OpMode
         /*if ((gamepad2.b && !prev2.b) || (gamepad1.b && !prev1.b))
             sweepBalls = !sweepBalls;*/
 
-        if (gamepad2.x && !prev2.x) {
+        if (gamepad1.x && !prev1.x) {
             bll.setPower(-ballLaunchSpeed * Constants.BALL_LAUNCHER_DIR_2016);
             blr.setPower(-ballLaunchSpeed * Constants.BALL_LAUNCHER_DIR_2016);
             canChangeServo = false;
@@ -282,21 +277,8 @@ public class LennyBotManual extends OpMode
             }, 1000);
         }
 
-        if (gamepad2.y && !prev2.y)
-            s2.setPosition(0.75);
-
-        if (gamepad2.right_bumper && !prev2.right_bumper)
-            s2.setPosition(1.0);
-
         //if (gamepad2.y && !prev2.y)
         //    s2.setPosition((s2.getPosition() >= Constants.SRV2_MAX) ? Constants.SRV2_MIN : Constants.SRV2_MAX);
-
-        if (gamepad2.dpad_left && !prev2.dpad_left)
-            bll.setPower(bll.getPower() - 0.05);
-
-        if (gamepad2.dpad_right && !prev2.dpad_right)
-            blr.setPower(blr.getPower() - 0.05);
-
 
         //if (gamepad1.b && !prevB2) {
         //toggleLed = !toggleLed;
