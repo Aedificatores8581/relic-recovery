@@ -9,15 +9,14 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 @TeleOp(name = "Test Program", group = "anti-bepis")
 
 public class SmolBotTest extends SmolBotTemplate {
-    public void start()
-    {
+    private double power = 1;
+    public void start(){}
 
-    }
-
+    @Override
     public void loop()
     {
-        setLeftPow(2);
-        setRightPow(-2);
+        setLeftPow(-power);
+        setRightPow(power);
     }
 
 }
