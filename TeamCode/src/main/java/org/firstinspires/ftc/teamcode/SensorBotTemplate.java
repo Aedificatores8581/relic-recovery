@@ -39,8 +39,6 @@ public abstract class SensorBotTemplate extends OpMode {
 
         left.setDirection(DcMotorSimple.Direction.REVERSE);
         right.setDirection(DcMotorSimple.Direction.FORWARD);
-
-        color = hardwareMap.colorSensor.get("cs");
         //ods = hardwareMap.opticalDistanceSensor.get("ods");
         //touch = hardwareMap.touchSensor.get("ts");
 
@@ -52,7 +50,6 @@ public abstract class SensorBotTemplate extends OpMode {
         setLeftPow(0.0);
         setRightPow(0.0);
 
-        color.enableLed(false);
     }
 
 }
