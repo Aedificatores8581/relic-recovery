@@ -93,12 +93,6 @@ public class SensorBotTurnyThing extends SensorBotTemplate {
         //telemetry.addData("Gyroscope (XYZ)", navx.getRawGyroX() + ", " + navx.getRawGyroY() + ", " + navx.getRawGyroZ());
         //telemetry.addData("Accelerometer (XYZ)", navx.getRawAccelX() + ", " + navx.getRawAccelY() + ", " + navx.getRawAccelZ());
         //telemetry.addData("Quaternion (WXYZ)", navx.getQuaternionW() + ", " + navx.getQuaternionX() + ", " + navx.getQuaternionY() + ", " + navx.getQuaternionZ());
-        telemetry.addData("(COLOR) Red", color.red());
-        telemetry.addData("(COLOR) Green", color.green());
-        telemetry.addData("(COLOR) Blue", color.blue());
-        telemetry.addData("(COLOR) Total", color.alpha());
-        //telemetry.addData("(ODS) Light Detected", ods.getLightDetected());
-        //telemetry.addData("(TOUCH) Is touched?", touch.isPressed());
         angles = imu.getAngularOrientation().toAxesReference(AxesReference.INTRINSIC).toAxesOrder(AxesOrder.XYZ);
 
         if (beginTime == 0) {
@@ -110,10 +104,11 @@ public class SensorBotTurnyThing extends SensorBotTemplate {
                 async.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        double currOrientation, origOrientation = toDegrees(angles.angleUnit, angles.thirdAngle);
+                        double currOrientation = 0;
+                        double origOrientation = toDegrees(angles.angleUnit, angles.thirdAngle);
                         setLeftPow(0.9);
                         setRightPow(-0.9);
-                        while (Math.abs((currOrientation = toDegrees(angles.angleUnit, angles.thirdAngle)) - origOrientation) < 120) {
+                        while (Math.abs((currOrientation = toDegrees(angles.angleUnit, angles.thirdAngle)) - origOrientation) <= 180) {
                             telemetry.addData("Angle", formatDegrees(currOrientation));
                         }
                         setLeftPow(0);
