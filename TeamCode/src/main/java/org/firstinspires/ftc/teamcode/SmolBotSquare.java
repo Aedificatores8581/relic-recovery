@@ -14,7 +14,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  *
  * @author Pootis Man
  */
-@TeleOp(name = "RevBot: Shquare", group = "bepis")
+@TeleOp(name = "RevBot: Square", group = "bepis")
 public class SmolBotSquare extends SmolBotTemplate
 {
     State state;
