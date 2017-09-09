@@ -18,11 +18,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.robotcore.external.navigation.Position;
 import org.firstinspires.ftc.robotcore.external.navigation.Velocity;
 
-
-/**
- * Created by The Saminator on 06-29-2017.
- */
-public abstract class SmolBotTemplate extends OpMode {
+public abstract class DriveForwardTemp extends OpMode {
     DcMotor left, right, arm, hand;
     Servo grab;
     NormalizedColorSensor colorSensor;
@@ -38,6 +34,7 @@ public abstract class SmolBotTemplate extends OpMode {
         arm = hardwareMap.dcMotor.get("am");
         hand = hardwareMap.dcMotor.get("hm");
         grab = hardwareMap.servo.get("gr");
+        /*
         colorSensor = hardwareMap.get(NormalizedColorSensor.class, "color sensor");
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
@@ -47,6 +44,7 @@ public abstract class SmolBotTemplate extends OpMode {
         imu = hardwareMap.get(BNO055IMU.class, "imu");
         imu.initialize(parameters);
         imu.startAccelerationIntegration(new Position(), new Velocity(), 1000);
+        */
 
 
 
