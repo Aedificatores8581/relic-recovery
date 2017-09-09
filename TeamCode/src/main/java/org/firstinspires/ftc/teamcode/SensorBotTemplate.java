@@ -20,6 +20,7 @@ public abstract class SensorBotTemplate extends OpMode {
     OpticalDistanceSensor ods;
     TouchSensor touch;
     DcMotor left, right;
+
     GyroSensor gyro;
     AHRS navx;
 
