@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.kauailabs.navx.ftc.AHRS;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.GyroSensor;
 import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 import com.qualcomm.robotcore.hardware.TouchSensor;
@@ -16,10 +17,10 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
 public abstract class SensorBotTemplate extends OpMode {
     static final int NAVX_I2C_PORT = 0;
 
-    ColorSensor color;
-    OpticalDistanceSensor ods;
+
     TouchSensor touch;
     DcMotor left, right;
+
     GyroSensor gyro;
     AHRS navx;
 
@@ -37,7 +38,8 @@ public abstract class SensorBotTemplate extends OpMode {
         left = hardwareMap.dcMotor.get("lm");
         right = hardwareMap.dcMotor.get("rm");
 
-        color = hardwareMap.colorSensor.get("cs");
+        left.setDirection(DcMotorSimple.Direction.REVERSE);
+        right.setDirection(DcMotorSimple.Direction.FORWARD);
         //ods = hardwareMap.opticalDistanceSensor.get("ods");
         //touch = hardwareMap.touchSensor.get("ts");
 
@@ -49,7 +51,6 @@ public abstract class SensorBotTemplate extends OpMode {
         setLeftPow(0.0);
         setRightPow(0.0);
 
-        color.enableLed(false);
     }
 
 }

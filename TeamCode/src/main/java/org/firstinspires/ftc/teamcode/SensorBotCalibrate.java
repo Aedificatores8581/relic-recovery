@@ -31,5 +31,6 @@ public class SensorBotCalibrate extends SensorBotTemplate {
         if (prevA && !gamepad1.a) {
             ReadWriteFile.writeFile(AppUtil.getInstance().getSettingsFile("AdafruitIMUCalibration.json"), imu.readCalibrationData().serialize());
         }
+        prevA = gamepad1.a;
     }
 }
