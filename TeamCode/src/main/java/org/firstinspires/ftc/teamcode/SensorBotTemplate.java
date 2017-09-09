@@ -17,8 +17,7 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
 public abstract class SensorBotTemplate extends OpMode {
     static final int NAVX_I2C_PORT = 0;
 
-    ColorSensor color;
-    OpticalDistanceSensor ods;
+
     TouchSensor touch;
     DcMotor left, right;
     GyroSensor gyro;
