@@ -15,7 +15,7 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
  * Created by The Saminator on 07-22-2017.
  */
 public abstract class SensorBotTemplate extends OpMode {
-    static final int NAVX_I2C_PORT = 0;
+    public static final int NAVX_I2C_PORT = 0;
 
 
     TouchSensor touch;
@@ -46,7 +46,7 @@ public abstract class SensorBotTemplate extends OpMode {
         //ods = hardwareMap.opticalDistanceSensor.get("ods");
         //touch = hardwareMap.touchSensor.get("ts");
 
-        //navx = AHRS.getInstance(hardwareMap.deviceInterfaceModule.get(""), NAVX_I2C_PORT, AHRS.DeviceDataType.kQuatAndRawData);
+        navx = AHRS.getInstance(hardwareMap.deviceInterfaceModule.get("navx"), NAVX_I2C_PORT, AHRS.DeviceDataType.kQuatAndRawData);
     }
 
     @Override
