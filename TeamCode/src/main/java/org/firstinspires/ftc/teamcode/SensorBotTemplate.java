@@ -15,7 +15,7 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
  * Created by The Saminator on 07-22-2017.
  */
 public abstract class SensorBotTemplate extends OpMode {
-    static final int NAVX_I2C_PORT = 0;
+    public static final int NAVX_I2C_PORT = 0;
 
 
     TouchSensor touch;
@@ -23,7 +23,7 @@ public abstract class SensorBotTemplate extends OpMode {
 
     GyroSensor gyro;
     AHRS navx;
-
+    ColorSensor cs;
     BNO055IMU imu;
 
     protected void setLeftPow(double pow) {
@@ -38,12 +38,15 @@ public abstract class SensorBotTemplate extends OpMode {
         left = hardwareMap.dcMotor.get("lm");
         right = hardwareMap.dcMotor.get("rm");
 
+        cs = hardwareMap.colorSensor.get("cs");
+        //gyro = hardwareMap.gyroSensor.get()
+
         left.setDirection(DcMotorSimple.Direction.REVERSE);
         right.setDirection(DcMotorSimple.Direction.FORWARD);
         //ods = hardwareMap.opticalDistanceSensor.get("ods");
         //touch = hardwareMap.touchSensor.get("ts");
 
-        //navx = AHRS.getInstance(hardwareMap.deviceInterfaceModule.get(""), NAVX_I2C_PORT, AHRS.DeviceDataType.kQuatAndRawData);
+        navx = AHRS.getInstance(hardwareMap.deviceInterfaceModule.get("navx"), NAVX_I2C_PORT, AHRS.DeviceDataType.kQuatAndRawData);
     }
 
     @Override

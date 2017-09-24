@@ -84,10 +84,10 @@ public class SensorBotTelemetry extends SensorBotTemplate {
         //telemetry.addData("Gyroscope (XYZ)", navx.getRawGyroX() + ", " + navx.getRawGyroY() + ", " + navx.getRawGyroZ());
         //telemetry.addData("Accelerometer (XYZ)", navx.getRawAccelX() + ", " + navx.getRawAccelY() + ", " + navx.getRawAccelZ());
         //telemetry.addData("Quaternion (WXYZ)", navx.getQuaternionW() + ", " + navx.getQuaternionX() + ", " + navx.getQuaternionY() + ", " + navx.getQuaternionZ());
-        telemetry.addData("(COLOR) Red", color.red());
-        telemetry.addData("(COLOR) Green", color.green());
-        telemetry.addData("(COLOR) Blue", color.blue());
-        telemetry.addData("(COLOR) Total", color.alpha());
+        telemetry.addData("(COLOR) Red", cs.red());
+        telemetry.addData("(COLOR) Green", cs.green());
+        telemetry.addData("(COLOR) Blue", cs.blue());
+        telemetry.addData("(COLOR) Total", cs.alpha());
         //telemetry.addData("(ODS) Light Detected", ods.getLightDetected());
         //telemetry.addData("(TOUCH) Is touched?", touch.isPressed());
         angles = imu.getAngularOrientation().toAxesReference(AxesReference.INTRINSIC).toAxesOrder(AxesOrder.XYZ);

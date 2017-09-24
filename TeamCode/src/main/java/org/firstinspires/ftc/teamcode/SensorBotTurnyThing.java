@@ -28,10 +28,10 @@ import java.util.TimerTask;
 @TeleOp(name = "SensorBot: Rotate 90 degrees", group = "feelz")
 public class SensorBotTurnyThing extends SensorBotTemplate {
 
-    Timer async;
-    Orientation angles;
-    boolean prevA;
-    long beginTime;
+    private Timer async;
+    private Orientation angles;
+    private boolean prevA;
+    private long beginTime;
 
     //--------------------------------------------------------------------------
     //

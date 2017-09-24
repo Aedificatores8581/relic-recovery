@@ -75,7 +75,11 @@ public class DriveForward extends DriveForwardTemp
     double drive = 0.0;
     double diameter = 90.0;
     double fullSpeed = 0.0;
+    double tick = 0.0;
     long time = 0;
+    double revolution = 0.0;
+    double leftTick = 0.0;
+    double rightTick = 0.0;
     @Override public void loop () {
         double leftY = gamepad1.left_stick_y;
         double leftX = gamepad1.left_stick_x;
@@ -120,12 +124,32 @@ public class DriveForward extends DriveForwardTemp
         else if (rightY == 0 && rightX == 0)
             setRight = 0;
         drive = setLeft + setRight;
-    }
-    public void sleep(double millis)
-            throws InterruptedException {
+        left.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        right.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        while (gamepad1.a)
+            setRightPow(0.25);
+            setLeftPow(0.25);
+        leftTick = left.getCurrentPosition();
+        rightTick = right.getCurrentPosition();
+        telemetry.addData("left encoder = ", leftTick);
+        telemetry.addData("right encoder = ", rightTick);
         if (gamepad1.left_bumper && gamepad1.right_bumper)
 
-            time = (new Double(fullSpeed * drive / (diameter * Math.PI))).longValue();
+            //using encoder ticks
+            tick = revolution * drive;
+        left.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        right.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //drive forward
+        if (checkEncoder((int)tick));
+        //stop driving
+    }
+   /* public void sleep(double millis)
+            throws InterruptedException {
+
+
+            //using
+     /*       time = (new Double(fullSpeed * drive / (diameter * Math.PI))).longValue();
+
 
         //drive forward
 
@@ -134,7 +158,7 @@ public class DriveForward extends DriveForwardTemp
         while (millis < fullSpeed * drive / (diameter * Math.PI)) {
             if (Thread.interrupted()) {
                 throw new InterruptedException();
-
+    */
 
 
             }
@@ -145,8 +169,6 @@ public class DriveForward extends DriveForwardTemp
 
 
 
-        }
+       // }
 
-// PootisBotManual
-    }
-}
+// PootisBotManuall

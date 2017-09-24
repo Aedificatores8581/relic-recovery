@@ -40,7 +40,7 @@ public class SensorBotManual extends SensorBotTemplate {
 
     @Override
     public void start() {
-        color.enableLed(true);
+        cs.enableLed(true);
     }
 
     //--------------------------------------------------------------------------
@@ -63,9 +63,9 @@ public class SensorBotManual extends SensorBotTemplate {
         //telemetry.addData("Gyroscope (XYZ)", navx.getRawGyroX() + ", " + navx.getRawGyroY() + ", " + navx.getRawGyroZ());
         //telemetry.addData("Accelerometer (XYZ)", navx.getRawAccelX() + ", " + navx.getRawAccelY() + ", " + navx.getRawAccelZ());
         //telemetry.addData("Quaternion (WXYZ)", navx.getQuaternionW() + ", " + navx.getQuaternionX() + ", " + navx.getQuaternionY() + ", " + navx.getQuaternionZ());
-        telemetry.addData("Red", color.red());
-        telemetry.addData("Green", color.green());
-        telemetry.addData("Blue", color.blue());
+        telemetry.addData("Red", cs.red());
+        telemetry.addData("Green", cs.green());
+        telemetry.addData("Blue", cs.blue());
     }
 
 } // PootisBotManual
