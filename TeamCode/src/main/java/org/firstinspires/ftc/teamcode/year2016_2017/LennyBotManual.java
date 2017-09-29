@@ -55,6 +55,8 @@ public class LennyBotManual extends OpMode
 
     boolean sweepBalls;
 
+    boolean dlORr;
+
     double s1StartPosition;
 
     Queue<Double> leftUssValues;
@@ -174,7 +176,7 @@ public class LennyBotManual extends OpMode
 
         s1.setPosition(Constants.SERVO_MIN_2016);
         s2.setPosition(1.0);
-
+        dlORr = true;
         //gs1.calibrate();
     }
 
@@ -213,20 +215,40 @@ public class LennyBotManual extends OpMode
     //-------
     // Initializes the class.
     //
-    // The system calls this member repeatedly while the OpMode is running.
-    //--------
-    @Override public void loop ()
-    {
-        left.setPower(gamepad1.left_stick_y * motorSpeed);
-        right.setPower(gamepad1.right_stick_y * motorSpeed);
+            // The system calls this member repeatedly while the OpMode is running.
+            //--------
+            @Override public void loop ()
+            {
+                left.setPower(gamepad1.left_stick_y * motorSpeed);
+                right.setPower(gamepad1.right_stick_y * motorSpeed);
+                if (gamepad1.dpad_left && dlORr) {
+                    ballLaunchSpeed -= .1;
+                    dlORr = false;
+                    timer.schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            dlORr = true;
+                        }
+                    }, 500);
+                }
+                if (gamepad1.dpad_right && dlORr) {
+                    ballLaunchSpeed += 0.1;
+                    dlORr = false;
+                    timer.schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            dlORr = true;
+                        }
+                    }, 500);
+                }
 
-        if (canChangeServo) {
-            s1.setPosition(Math.max(Constants.SERVO_MIN_2016, Math.min(s1.getPosition() - (gamepad2.left_stick_y * 0.01), Constants.SERVO_MAX_2016)));
-        }
+                    if (canChangeServo) {
+                        s1.setPosition(Math.max(Constants.SERVO_MIN_2016, Math.min(s1.getPosition() - (gamepad2.left_stick_y * 0.01), Constants.SERVO_MAX_2016)));
+                    }
 
-        if (gamepad1.dpad_up && !prev1.dpad_up) {
-            //if (s2.getPosition() <= 0.95)
-            s2.setPosition(s2.getPosition() + 0.05);
+                if (gamepad1.dpad_up && !prev1.dpad_up) {
+                    //if (s2.getPosition() <= 0.95)
+                    s2.setPosition(s2.getPosition() + 0.05);
         }
         if (gamepad1.dpad_down && !prev1.dpad_down) {
             s2.setPosition(s2.getPosition() - 0.05);
@@ -328,7 +350,7 @@ public class LennyBotManual extends OpMode
 
         telemetry.addData("Touch Sensor One", ts1.isPressed());
         telemetry.addData("Touch Sensor Two", ts2.isPressed());
-
+        telemetry.addData("Launcher Motor Speed", ballLaunchSpeed);
 
     } // PootisBotManual::loop
 

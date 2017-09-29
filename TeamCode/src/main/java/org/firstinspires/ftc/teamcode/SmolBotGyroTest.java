@@ -25,7 +25,7 @@ import java.util.TimerTask;
  *
  * @author Pootis Man
  */
-@TeleOp(name = "SensorBot: Rotate 90 degrees", group = "feelz")
+@TeleOp(name = "SensorBot: Rotate 90_degrees", group = "feelz")
 public class SmolBotGyroTest extends SmolBotTemplate {
 
     Timer async;
