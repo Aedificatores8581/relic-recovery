@@ -198,16 +198,6 @@ public class LennyBotManual extends OpMode
         }
     }
 
-    @Override
-    public void start() {
-        if (vs.getVoltage() > 13.5)
-            ballLaunchSpeed = 0.28 * Constants.BALL_LAUNCHER_DIR_2016;
-        else if (vs.getVoltage() > 13.2)
-            ballLaunchSpeed = 0.29 * Constants.BALL_LAUNCHER_DIR_2016;
-        else
-            ballLaunchSpeed = 0.30 * Constants.BALL_LAUNCHER_DIR_2016;
-    }
-
     //--------------------------------------------------------------------------
     //
     // loop
@@ -222,7 +212,7 @@ public class LennyBotManual extends OpMode
                 left.setPower(gamepad1.left_stick_y * motorSpeed);
                 right.setPower(gamepad1.right_stick_y * motorSpeed);
                 if (gamepad1.dpad_left && dlORr) {
-                    ballLaunchSpeed -= .1;
+                    ballLaunchSpeed -= 1;
                     dlORr = false;
                     timer.schedule(new TimerTask() {
                         @Override
@@ -232,7 +222,7 @@ public class LennyBotManual extends OpMode
                     }, 500);
                 }
                 if (gamepad1.dpad_right && dlORr) {
-                    ballLaunchSpeed += 0.1;
+                    ballLaunchSpeed += 1;
                     dlORr = false;
                     timer.schedule(new TimerTask() {
                         @Override
