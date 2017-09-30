@@ -150,6 +150,8 @@ public class LennyBotManual extends OpMode
         left.setDirection(Constants.L_MTR_DIR_2016);
         right.setDirection(Constants.R_MTR_DIR_2016);
         sweepBalls = false;
+        bll.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        blr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         bll.setPower(0);
         blr.setPower(0);
         sm.setDirection(DcMotor.Direction.FORWARD);
