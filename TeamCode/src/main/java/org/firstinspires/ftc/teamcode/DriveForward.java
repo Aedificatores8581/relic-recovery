@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 
 import java.lang.Object.*;
+
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import java.math.*;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -41,6 +43,7 @@ import java.util.TimerTask;
  */
 @TeleOp(name = "Drive_Forward", group = "bepis")
 
+@Disabled
 public class DriveForward extends DriveForwardTemp
 {
 

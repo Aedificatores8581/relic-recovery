@@ -5,6 +5,7 @@ package org.firstinspires.ftc.teamcode;
 // PootisBotManual
 //
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -15,6 +16,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  * @author Pootis Man
  */
 @TeleOp(name = "RevBot: Square", group = "bepis")
+@Disabled
 public class SmolBotSquare extends SmolBotTemplate
 {
     State state;

@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
@@ -14,11 +15,9 @@ import org.firstinspires.ftc.robotcore.external.navigation.Position;
 import org.firstinspires.ftc.robotcore.external.navigation.Velocity;
 
 
-/**
- * Created by The Saminator on 06-29-2017.
- */
 @Autonomous(name = "ballsensor", group = "bepis")
-public abstract class SmolBotArm extends OpMode {
+@Disabled
+public class SmolBotArm extends OpMode {
     DcMotor left, right, arm, hand;
     Servo grab;
     NormalizedColorSensor colorSensor;
@@ -31,7 +30,7 @@ public abstract class SmolBotArm extends OpMode {
         arm = hardwareMap.dcMotor.get("am");
         hand = hardwareMap.dcMotor.get("hm");
         grab = hardwareMap.servo.get("gr");
-        colorSensor = hardwareMap.get(NormalizedColorSensor.class, "color sensor");
+        colorSensor = hardwareMap.get(NormalizedColorSensor.class, "cs");
         left.setDirection(Constants.LEFT_DIR);
         right.setDirection(Constants.RIGHT_DIR);
         arm.setDirection(Constants.ARM_DIR);
@@ -64,30 +63,30 @@ public abstract class SmolBotArm extends OpMode {
         boolean blueAliance = true;
 
 
-/*        right.setPower(1);
-        left.setPower(1);
+        //right.setPower(1);
+        //left.setPower(1);
         if(blueAliance == true)
             if (red == 0 && redRatio * 1 > blueRatio)
                 stop();
-                setGrabPow (1);
-            if (blue == 0 && redRatio * 1 < blueRatio)
-                stop();
-                setGrabPow (-1);
+        setGrabPow (1);
+        if (blue == 0 && redRatio * 1 < blueRatio)
+            stop();
+        setGrabPow (-1);
         if(blueAliance == false)
             if (red == 0 && redRatio * 1 > blueRatio)
                 stop();
-                setGrabPow (-1);
-            if (blue == 0 && redRatio * 1 < blueRatio)
-                stop();
-                setGrabPow (1);
-                */
-        telemetry.addLine()
-                .addData("a", colors.alpha )
-                .addData("red Ratio", (colors.red/(colors.blue + colors.red + colors.green)))
-                .addData("green Ratio", (colors.green/(colors.blue + colors.red + colors.green)))
-                .addData("blue Ratio", (colors.blue/(colors.blue + colors.red + colors.green)))
-                .addData("blue", colors.blue)
-                .addData("red", colors.red);
+        setGrabPow (-1);
+        if (blue == 0 && redRatio * 1 < blueRatio)
+            stop();
+        setGrabPow (1);
+
+        telemetry.addData("a", colors.alpha );
+        telemetry.addData("red Ratio", (colors.red/(colors.blue + colors.red + colors.green)));
+        telemetry.addData("green Ratio", (colors.green/(colors.blue + colors.red + colors.green)));
+        telemetry.addData("blue Ratio", (colors.blue/(colors.blue + colors.red + colors.green)));
+        telemetry.addData("blue", colors.blue);
+        telemetry.addData("red", colors.red);
+        telemetry.update();
     }
     public void stop() {
         setLeftPow(0.0);
@@ -108,7 +107,7 @@ public abstract class SmolBotArm extends OpMode {
 
 
     protected void setGrabPow(double position) {
-        grab.setPosition(position * Constants.GRAB_SPEED);
+        grab.setPosition(position * Constants.GRAB_RANGE);
     }
 
     protected void setHandPow(double pow) {

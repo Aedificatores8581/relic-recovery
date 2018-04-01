@@ -2,8 +2,8 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.kauailabs.NavxMicroNavigationSensor;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.kauailabs.navx.ftc.AHRS;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -14,31 +14,31 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
 /**
  * Created by The Saminator on 07-22-2017.
  */
+@Disabled
 public abstract class SensorBotTemplate extends OpMode {
-    public static final int NAVX_I2C_PORT = 0;
+    static final int NAVX_I2C_PORT = 0;
 
 
     TouchSensor touch;
     DcMotor left, right;
 
     GyroSensor gyro;
-    AHRS navx;
-    ColorSensor cs;
+    //ColorSensor cs;
     BNO055IMU imu;
 
     protected void setLeftPow(double pow) {
-        left.setPower(pow * Constants.LEFT_SPEED);
+        left.setPower(pow);
     }
 
     protected void setRightPow(double pow) {
-        right.setPower(pow * Constants.RIGHT_SPEED);
+        right.setPower(pow);
     }
 
     public void init() {
         left = hardwareMap.dcMotor.get("lm");
         right = hardwareMap.dcMotor.get("rm");
 
-        cs = hardwareMap.colorSensor.get("cs");
+        //cs = hardwareMap.colorSensor.get("cs");
         //gyro = hardwareMap.gyroSensor.get()
 
         left.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -46,7 +46,7 @@ public abstract class SensorBotTemplate extends OpMode {
         //ods = hardwareMap.opticalDistanceSensor.get("ods");
         //touch = hardwareMap.touchSensor.get("ts");
 
-        navx = AHRS.getInstance(hardwareMap.deviceInterfaceModule.get("navx"), NAVX_I2C_PORT, AHRS.DeviceDataType.kQuatAndRawData);
+        //navx = AHRS.getInstance(hardwareMap.deviceInterfaceModule.get(""), NAVX_I2C_PORT, AHRS.DeviceDataType.kQuatAndRawData);
     }
 
     @Override
