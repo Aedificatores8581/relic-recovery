@@ -2,4 +2,4 @@
 
 GO TO https://github.com/ftctechnh/ftc_app FOR THAT.
 
-However, this is also an unused repository, as we have figured out it causes our robot to catch explode into magical unicorns. It is highly suggested that this is not used.
+This is the repository for the 2017 2018 season for team 8581 Ædificatores
