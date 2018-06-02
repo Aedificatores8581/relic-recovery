@@ -100,45 +100,45 @@ public abstract class DriveBotTestTemplate extends OpMode {
     }
 
 
-    DcMotor leftFore, leftRear, rightFore, rightRear;
-    DcMotor dispenserLinearSlide;
-    DcMotor relicArm;
+    public DcMotor leftFore, leftRear, rightFore, rightRear;
+    public DcMotor dispenserLinearSlide;
+    public DcMotor relicArm;
 
-    DcMotor glyphLift;
-    DigitalChannel glyphLiftHigh, glyphLiftLow;
-    DistanceSensor intakeSensorRange;
-    NormalizedColorSensor intakeSensorColor;
-    protected double prevIntakeSensorRangeVal;
+    public DcMotor glyphLift;
+    public DigitalChannel glyphLiftHigh, glyphLiftLow;
+    public DistanceSensor intakeSensorRange;
+    public NormalizedColorSensor intakeSensorColor;
+    public double prevIntakeSensorRangeVal;
 
     //power port 5v
 
-    DcMotor intakeLeft, intakeRight;
+    public DcMotor intakeLeft, intakeRight;
 
 
-    CRServo belt1, belt2;
+    public CRServo belt1, belt2;
 
-    Servo jewelArm, jewelFlipper, relicHand, relicFingers, glyphOutput, rIntake, lIntake;
+    public Servo jewelArm, jewelFlipper, relicHand, relicFingers, glyphOutput, rIntake, lIntake;
 
-    NormalizedColorSensor color, colorL;
-    NormalizedRGBA colors;
+    public NormalizedColorSensor color, colorL;
+    public NormalizedRGBA colors;
 
 
-    BNO055IMU imu;
-    AnalogInput ampSensor;
+    public BNO055IMU imu;
+    public AnalogInput ampSensor;
 
-    protected Orientation angles;
-    protected Acceleration gravity;
+    public Orientation angles;
+    public Acceleration gravity;
 
     private boolean dancing;
 
     public double angleAtStart;
 
-    protected DigitalChannel magFront;
-    protected DigitalChannel magBack;
+    public DigitalChannel magFront;
+    public DigitalChannel magBack;
 
     public boolean prox, possibleProx;
 
-    protected DistanceSensor dSensorR, dSensorL;
+    public DistanceSensor dSensorR, dSensorL;
 
     @Override
     public void init() {
@@ -219,9 +219,6 @@ public abstract class DriveBotTestTemplate extends OpMode {
         leftRear.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightFore.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightRear.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-        wilhelmScream = MediaPlayer.create(hardwareMap.appContext, R.raw.scream);
-        danceMusic = MediaPlayer.create(hardwareMap.appContext, R.raw.dance);
 
         if (needsGyroSensor()) {
             BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
