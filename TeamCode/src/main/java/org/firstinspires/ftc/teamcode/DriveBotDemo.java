@@ -80,6 +80,13 @@ public class DriveBotDemo extends DriveBotTestTemplate {
                     belt(0.0);
                 }
 
+                if (gamepad1.left_bumper && glyphLiftHigh.getState())
+                    glyphLift.setPower(0.75);
+                else if (gamepad1.right_bumper && glyphLiftLow.getState())
+                    glyphLift.setPower(-0.75);
+                else
+                    glyphLift.setPower(0.0);
+
                 setLeftPow(gamepad1.left_stick_y * -speedMult.getMult());
                 setRightPow(gamepad1.right_stick_y * -speedMult.getMult());
                 break;
@@ -88,18 +95,21 @@ public class DriveBotDemo extends DriveBotTestTemplate {
 
 
             case GAMEPAD_TWO:
-                if (triggered(gamepad1.left_trigger) && glyphLiftHigh.getState())
-                    glyphLift.setPower(0.75);
-                else if (triggered(gamepad1.right_trigger) && glyphLiftLow.getState())
-                    glyphLift.setPower(-0.75);
-                else
-                    glyphLift.setPower(0.0);
-
                 relicArm.setPower(gamepad1.left_stick_y);
                 if (Math.abs(gamepad1.right_stick_y) >= 0.25) {
                     relicHandServoValue += gamepad1.right_stick_y * 0.012;
                     clampRelicHandServo();
                 }
+                if (gamepad1.right_bumper) {
+                    relicFingersServoValue -= 0.02;
+                    clampRelicFingersServo();
+                }
+
+                if (gamepad1.left_bumper) {
+                    relicFingersServoValue += 0.02;
+                    clampRelicFingersServo();
+                }
+
                 break;
         }
 
@@ -121,15 +131,7 @@ public class DriveBotDemo extends DriveBotTestTemplate {
             clampDumpServo();
         }
 
-        if (gamepad1.right_bumper) {
-            relicFingersServoValue -= 0.02;
-            clampRelicFingersServo();
-        }
 
-        if (gamepad1.left_bumper) {
-            relicFingersServoValue += 0.02;
-            clampRelicFingersServo();
-        }
 
 
         if (gamepad1.x && !prev.x){
