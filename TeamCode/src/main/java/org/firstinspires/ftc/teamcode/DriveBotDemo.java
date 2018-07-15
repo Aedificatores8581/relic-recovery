@@ -17,6 +17,20 @@ public class DriveBotDemo extends DriveBotTestTemplate {
         GAMEPAD_TWO
     }
 
+    enum LiftState {
+        BOTTOM(0.0),
+        RISING(0.75),
+        TOP(0.0),
+        LOWERING(-0.75);
+
+        private double liftSpeed;
+
+        LiftState(double liftSpeed) {this.liftSpeed = liftSpeed;}
+
+        public double getLiftSpeed() {return liftSpeed};
+
+    }
+
     public enum SpeedToggle {
         SLOW(0.6), // originally 0.45
         FAST(0.7); // originally 0.80
@@ -34,6 +48,7 @@ public class DriveBotDemo extends DriveBotTestTemplate {
 
 
     ControlState controlState;
+    LiftState liftState;
     SpeedToggle speedMult;
 
     double relicHandServoValue;
@@ -80,12 +95,12 @@ public class DriveBotDemo extends DriveBotTestTemplate {
                     belt(0.0);
                 }
 
-                if (gamepad1.left_bumper && glyphLiftHigh.getState())
+                /*if (gamepad1.left_bumper && glyphLiftHigh.getState())
                     glyphLift.setPower(0.75);
                 else if (gamepad1.right_bumper && glyphLiftLow.getState())
                     glyphLift.setPower(-0.75);
                 else
-                    glyphLift.setPower(0.0);
+                    glyphLift.setPower(0.0);*/
 
                 setLeftPow(gamepad1.left_stick_y * -speedMult.getMult());
                 setRightPow(gamepad1.right_stick_y * -speedMult.getMult());
@@ -115,7 +130,6 @@ public class DriveBotDemo extends DriveBotTestTemplate {
 
 
 
-
         if (gamepad1.dpad_up) {
             glyphDumpServoValue += 0.05;
             clampDumpServo();
@@ -140,6 +154,34 @@ public class DriveBotDemo extends DriveBotTestTemplate {
 
         if (gamepad1.a && !prev.a) {
             controlState = toggleControlState(controlState);
+        }
+
+        switch (liftState) {
+            case BOTTOM:
+                glyphLift.setPower(LiftState.BOTTOM);
+                if (gamepad1.b) {
+                    liftState = LiftState.RISING;
+                }
+                break;
+            case RISING:
+                glyphLift.setPower(LiftState.RISING);
+                if (glyphLiftHigh.getState()) {
+                    liftState = LiftState.TOP;
+                }
+                break;
+            case TOP:
+                glyphLift.setPower(LiftState.TOP);
+                if (gamepad1.b) {
+                    liftState = LiftState.LOWERING;
+                }
+                break;
+            case LOWERING:
+                glyphLift.setPower(LiftState.LOWERING);
+                if (glyphLiftLow.getState()) {
+                    liftState = LiftState.BOTTOM;
+                }
+                break;
+
         }
 
         try {

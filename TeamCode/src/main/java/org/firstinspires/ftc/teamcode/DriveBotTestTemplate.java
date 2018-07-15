@@ -266,12 +266,6 @@ public abstract class DriveBotTestTemplate extends OpMode {
     public void stop() {
         setLeftPow(0.0);
         setRightPow(0.0);
-
-        wilhelmScream.release();
-        wilhelmScream = null;
-
-        danceMusic.release();
-        danceMusic = null;
     }
 
     GlyphInOutIntakeState checkGlyphIntakeStatus() {
